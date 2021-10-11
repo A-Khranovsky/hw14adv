@@ -57,8 +57,9 @@ class TagController extends Controller
 
     public function delete()
     {
-        $post = Tag::find(request()->route()->parameter('id'));
-        $post->delete();
+        $tag = Tag::find(request()->route()->parameter('id'));
+        $tag->posts()->detach();
+        $tag->delete();
 
         return redirect('/tags');
     }

@@ -21,8 +21,8 @@ class CreateCategoriesTable extends Migration
         });
 
         Schema::table('posts', function(Blueprint $table){
-            $table->foreignId('category_id');
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreignId('category_id')->unsigned()->nullable();
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('SET NULL');
         });
     }
 

@@ -22,12 +22,12 @@ class CreateTagsTable extends Migration
 
         Schema::create('post_tag', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('post_id');
-            $table->foreignId('tag_id');
+            $table->foreignId('post_id')->unsigned()->nullable();
+            $table->foreignId('tag_id')->unsigned()->nullable();
             $table->timestamps();
 
-            $table->foreign('post_id')->references('id')->on('posts');
-            $table->foreign('tag_id')->references('id')->on('tags');
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('SET NULL');
+            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('SET NULL');
         });
     }
 
